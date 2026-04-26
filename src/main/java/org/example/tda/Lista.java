@@ -6,76 +6,152 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Lista<T> implements TDALista<T> {
-    private final List<T> elements;
+    private Nodo<T> primero;
+    private int tamaño;
 
     public Lista() {
-        this.elements = new ArrayList<>();
+        this.primero = null;
+        this.tamaño = 0;
     }
 
     @Override
     public void agregar(T elem) {
-        elements.add(elem);
+        Nodo<T> nuevo = new Nodo<>(elem);
+        if (primero == null) {
+            primero = nuevo;
+        } else {
+            Nodo<T> nodo = primero;
+            while (nodo.getSiguiente() != null) {
+                nodo = nodo.getSiguiente();
+            }
+            nodo.setSiguiente(nuevo);
+        }
+        tamaño++;
     }
 
     @Override
     public void agregar(int index, T elem) {
-        elements.add(index, elem);
+        if (index < 0 || index > tamaño) {
+            throw new IndexOutOfBoundsException();
+        }
+        Nodo<T> nuevo = new Nodo<>(elem);       
+        if (index == 0) {               
+            nuevo.setSiguiente(primero);
+            primero = nuevo;
+        } else {
+            Nodo<T> aux = primero;
+            for (int i = 0; i < index - 1; i++) {
+                aux = aux.getSiguiente();
+            }
+            nuevo.setSiguiente(aux.getSiguiente());
+            aux.setSiguiente(nuevo);
+        }
+        tamaño++;
     }
 
     @Override
     public T obtener(int index) {
-        return elements.get(index);
+        if (index < 0 || index >= tamaño) {
+            throw new IndexOutOfBoundsException();
+        }
+        Nodo<T> aux = primero;
+        for (int i = 0; i < index; i++) {
+            aux = aux.getSiguiente();
+        }
+        return aux.getDato();
     }
 
     @Override
     public T remover(int index) {
-        return elements.remove(index);
+        if (index < 0 || index >= tamaño) {
+            throw new IndexOutOfBoundsException();
+        }
+        T borrado;
+        if (index == 0) {
+            borrado = primero.getDato();
+            primero = primero.getSiguiente();
+        } else {
+            Nodo<T> aux = primero;
+            for (int i = 0; i < index - 1; i++) {
+                aux = aux.getSiguiente();
+            }
+            borrado = aux.getSiguiente().getDato();
+            aux.setSiguiente(aux.getSiguiente().getSiguiente());
+        }
+        tamaño--;
+        return borrado;
     }
 
     @Override
     public boolean remover(T elem) {
-        return elements.remove(elem);
+        if (primero == null) return false;
+        if (primero.getDato().equals(elem)) {
+            primero = primero.getSiguiente();
+            tamaño--;
+            return true;
+        }
+        Nodo<T> aux = primero;
+        while (aux.getSiguiente() != null && !aux.getSiguiente().getDato().equals(elem)) {
+            aux = aux.getSiguiente();
+        }
+        if (aux.getSiguiente() != null) {
+            aux.setSiguiente(aux.getSiguiente().getSiguiente());
+            tamaño--;
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean contiene(T elem) {
-        return elements.contains(elem);
+        Nodo<T> aux = primero;
+        while (aux != null) {
+            if (aux.getDato().equals(elem)) return true;
+            aux = aux.getSiguiente();
+        }
+        return false;
     }
 
     @Override
     public int indiceDe(T elem) {
-        return elements.indexOf(elem);
+        Nodo<T> aux = primero;
+        for (int i = 0; i < tamaño; i++) {
+            if (aux.getDato().equals(elem)) return i;
+            aux = aux.getSiguiente();
+        }
+        return -1;
     }
 
     @Override
     public T buscar(Predicate<T> criterio) {
-        for (T elem : elements) {
-            if (criterio.test(elem)) {
-                return elem;
+        Nodo<T> aux = primero;
+        while (aux != null) {
+            if (criterio.test(aux.getDato())) {
+                return aux.getDato();
             }
+            aux = aux.getSiguiente();
         }
         return null;
     }
 
     @Override
-    public TDALista<T> ordenar(Comparator<T> comparator) {
-        Lista<T> sorted = new Lista<>();
-        elements.stream().sorted(comparator).forEach(sorted::agregar);
-        return sorted;
-    }
-
-    @Override
     public int tamaño() {
-        return elements.size();
+        return tamaño;
     }
 
     @Override
     public boolean esVacio() {
-        return elements.isEmpty();
+        return primero == null;
     }
 
     @Override
     public void vaciar() {
-        elements.clear();
+        primero = null;
+        tamaño = 0;
+    }
+
+    @Override
+    public TDALista<T> ordenar(Comparator<T> comparator) {
+        throw new UnsupportedOperationException("k");
     }
 }
