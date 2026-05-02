@@ -1,8 +1,11 @@
-package org.example.tda;
+package org.example.utils;
 
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
+
+import org.example.tda.TDALista;
+import org.example.tda.TDAPila;
 
 public class Pila<T> implements TDAPila<T> {
     private Nodo<T> primero;
@@ -20,7 +23,7 @@ public class Pila<T> implements TDAPila<T> {
 
     @Override
     public void agregar(int index, T elem) {    
-        this.mete(elem)
+        this.mete(elem);
     }
 
     @Override

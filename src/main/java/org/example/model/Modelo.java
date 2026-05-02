@@ -1,5 +1,6 @@
 package org.example.model;
 
-public class Experiment {
+public class Modelo {
+
     
 }

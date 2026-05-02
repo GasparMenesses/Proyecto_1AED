@@ -90,16 +90,18 @@ public class Cola<T> implements TDACola<T>{
     @Override
     public boolean poneEnCola(T dato) {
         Nodo<T> nuevoNodo = new Nodo<>(dato);
-       if (this.primero == null){
-        this.primero = nuevoNodo;
-       }
-        Nodo<T> aux = primero;
-        while(aux.getSiguiente() != null){
+        if (this.primero == null) {
+            this.primero = nuevoNodo;
+            return true;
+        }
+        Nodo<T> aux = this.primero;
+        while (aux.getSiguiente() != null) {
             aux = aux.getSiguiente();
         }
-            aux.setSiguiente(nuevoNodo);
-       }
+        aux.setSiguiente(nuevoNodo);
+        return true;
     }
+    
 
     @Override
     public T quitaDeCola() {

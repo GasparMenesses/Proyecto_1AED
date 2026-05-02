@@ -1,4 +1,6 @@
-package org.example.tda;
+package org.example.model;
+import org.example.utils.*;
+
 public class Experimento {
     private String id;
     private DataSet dataset;    
