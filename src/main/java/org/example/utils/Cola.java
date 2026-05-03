@@ -1,8 +1,11 @@
-package org.example.tda;
+package org.example.utils;
 
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
+
+import org.example.tda.TDACola;
+import org.example.tda.TDALista;
 
 public class Cola<T> implements TDACola<T>{
     private Nodo<T> primero;

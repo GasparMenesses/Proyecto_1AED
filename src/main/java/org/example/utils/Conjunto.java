@@ -1,6 +1,9 @@
-package org.example.tda;
+package org.example.utils;
 import java.util.Comparator;
 import java.util.function.Predicate;
+
+import org.example.tda.TDAConjunto;
+import org.example.tda.TDALista;
 
 public class Conjunto<T extends Comparable<T>> implements TDAConjunto<T> {
 

@@ -1,10 +1,10 @@
 package org.example.model;
 
 public class Dataset {
-    private int id;
-    private String name;
-    private int size;
-    private String problemType; 
+    private final int id;
+    private final String name;
+    private final int size;
+    private final String problemType; 
 
     public Dataset(int id, String name, int size, String problemType) {
         this.id = id;
@@ -12,7 +12,7 @@ public class Dataset {
         this.size = size;
         this.problemType = problemType;
     }
-
+ 
     // getters
     
 }

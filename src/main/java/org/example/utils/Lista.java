@@ -1,9 +1,11 @@
-package org.example.tda;
+package org.example.utils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
+
+import org.example.tda.TDALista;
 
 public class Lista<T> implements TDALista<T> {
     private Nodo<T> primero;
