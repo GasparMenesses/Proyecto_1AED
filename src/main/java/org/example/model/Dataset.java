@@ -1,10 +1,11 @@
 package org.example.model;
 
 public class Dataset {
+
     private final int id;
     private final String name;
     private final int size;
-    private final String problemType; 
+    private final String problemType;
 
     // constructor
     public Dataset(int id, String name, int size, String problemType) {
@@ -13,9 +14,9 @@ public class Dataset {
         this.size = size;
         this.problemType = problemType;
     }
- 
+
     // getters
-        public int getId() {
+    public int getId() {
         return id;
     }
 
@@ -30,7 +31,5 @@ public class Dataset {
     public String getProblemType() {
         return problemType;
     }
-
-    
 
 }

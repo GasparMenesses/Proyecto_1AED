@@ -1,11 +1,7 @@
 package org.example.model;
 
-import java.io.BufferedReader;
-import java.nio.Buffer;
-
-import org.example.ConsoleManager.BufferReader;
-
 public class Model {
+
     Integer id;
     String name;
     String type;
