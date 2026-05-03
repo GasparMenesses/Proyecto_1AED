@@ -1,7 +1,7 @@
 package org.example.service;
 
-import org.example.model.Dataset;
-import org.example.model.Model;
+import org.example.components.Dataset;
+import org.example.components.Model;
 import org.example.utils.Lista;
 
 public class LabFlowManager {
@@ -18,5 +18,6 @@ public class LabFlowManager {
     public void reciveDataset(Dataset dataset) {
         datasets.agregar(dataset);
     }
+    //Permitir registrar múltiples experimentos
 
 }

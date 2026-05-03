@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.model.Model;
+import org.example.components.Model;
 import org.example.utils.Lista;
 
 public class ModelService {
@@ -23,7 +23,7 @@ public class ModelService {
     public void PrintModels() {
         for (int i = 0; i < modelos.tamaño(); i++) {
             System.out.println(
-                "Modelo: " + modelos.obtener(i).getName() + " / Tipo: " + modelos.obtener(i).getType() + " / Parámetros: " + modelos.obtener(i).getParameters());
+                    "Modelo: " + modelos.obtener(i).getName() + " / Tipo: " + modelos.obtener(i).getType() + " / Parámetros: " + modelos.obtener(i).getParameters());
         }
     }
 

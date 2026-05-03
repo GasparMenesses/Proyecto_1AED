@@ -5,8 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.example.model.Dataset;
-import org.example.model.Model;
+import org.example.components.Dataset;
+import org.example.components.Model;
 import org.example.service.DatasetService;
 import org.example.service.ModelService;
 
