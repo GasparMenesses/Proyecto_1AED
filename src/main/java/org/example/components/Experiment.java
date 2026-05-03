@@ -34,6 +34,14 @@ public class Experiment {
         return state;
     }
 
+    public double getAccuracy() {
+        return accuracy;
+    }
+
+    public double getPrecision() {
+        return precision;
+    }
+
     public void setState(ExperimentState state) {
         this.state = state;
     }

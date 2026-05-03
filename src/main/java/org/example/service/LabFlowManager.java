@@ -16,9 +16,9 @@ public class LabFlowManager {
     // historial ejecutados
     private Lista<Experiment> executedHistory;
 
-    public LabFlowManager() {
-        this.datasetService = new DatasetService();
-        this.modelService = new ModelService();
+    public LabFlowManager(DatasetService datasetService, ModelService modelService) {
+        this.datasetService = datasetService;
+        this.modelService = modelService;
         this.pendingExperiments = new Cola<>();
         this.executedHistory = new Lista<>();
     }
@@ -38,9 +38,9 @@ public class LabFlowManager {
         }
 
         Experiment experim = new Experiment(id, model, dataset, ExperimentState.PENDIENTE, 0.0, 0.0);
-        pendingExperiments.poneEnCola(experim);
+        boolean added = pendingExperiments.poneEnCola(experim);
 
-        return true;
+        return true && added;
     }
 
     // --- BUSCAR (en pendientes + historial) ---
@@ -71,6 +71,13 @@ public class LabFlowManager {
     }
 
     // --- LISTADOS ---
+
+    public void listExecutedExperiments() {
+        for (int i = 0; i < executedHistory.tamaño(); i++) {
+            System.out.println( "ID: " + executedHistory.obtener(i).getId() + " - Modelo: " + executedHistory.obtener(i).getModel().getName() + " - Dataset: " + executedHistory.obtener(i).getDataset().getName() + " - Estado: " + executedHistory.obtener(i).getState() + " - Accuracy: " + executedHistory.obtener(i).getAccuracy() + " - Precision: " + executedHistory.obtener(i).getPrecision());
+        }
+    }
+    
     public void listExperimentsByDataset(int datasetId) {
 
         // pendientes
@@ -79,7 +86,7 @@ public class LabFlowManager {
             Experiment e = pendingExperiments.quitaDeCola();
 
             if (e.getDataset().getId() == datasetId) {
-                System.out.println(e);
+                System.out.println( "ID: " + e.getId() + " - Modelo: " + e.getModel().getName() + " - Dataset: " + e.getDataset().getName() + " - Estado: " + e.getState() + " - Accuracy: " + e.getAccuracy() + " - Precision: " + e.getPrecision());
             }
 
             pendingExperiments.poneEnCola(e);
@@ -89,7 +96,7 @@ public class LabFlowManager {
         for (int i = 0; i < executedHistory.tamaño(); i++) {
             Experiment e = executedHistory.obtener(i);
             if (e.getDataset().getId() == datasetId) {
-                System.out.println(e);
+                System.out.println( "ID: " + e.getId() + " - Modelo: " + e.getModel().getName() + " - Dataset: " + e.getDataset().getName() + " - Estado: " + e.getState() + " - Accuracy: " + e.getAccuracy() + " - Precision: " + e.getPrecision());
             }
         }
     }
@@ -102,7 +109,7 @@ public class LabFlowManager {
             Experiment e = pendingExperiments.quitaDeCola();
 
             if (e.getModel().getId() == modelId) {
-                System.out.println(e);
+                System.out.println( "ID: " + e.getId() + " - Modelo: " + e.getModel().getName() + " - Dataset: " + e.getDataset().getName() + " - Estado: " + e.getState() + " - Accuracy: " + e.getAccuracy() + " - Precision: " + e.getPrecision());
             }
 
             pendingExperiments.poneEnCola(e);
@@ -112,7 +119,7 @@ public class LabFlowManager {
         for (int i = 0; i < executedHistory.tamaño(); i++) {
             Experiment e = executedHistory.obtener(i);
             if (e.getModel().getId() == modelId) {
-                System.out.println(e);
+                System.out.println( "ID: " + e.getId() + " - Modelo: " + e.getModel().getName() + " - Dataset: " + e.getDataset().getName() + " - Estado: " + e.getState() + " - Accuracy: " + e.getAccuracy() + " - Precision: " + e.getPrecision());
             }
         }
     }

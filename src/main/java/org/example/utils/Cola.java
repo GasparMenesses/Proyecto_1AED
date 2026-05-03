@@ -69,8 +69,13 @@ public class Cola<T> implements TDACola<T>{
 
     @Override
     public int tamaño() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tamaño'");
+        int count = 0;
+        Nodo<T> aux = this.primero;
+        while (aux != null) {
+            count++;
+            aux = aux.getSiguiente();
+        }
+        return count;
     }
 
     @Override

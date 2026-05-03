@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import org.example.components.Dataset;
 import org.example.components.Model;
 import org.example.service.DatasetService;
+import org.example.service.LabFlowManager;
 import org.example.service.ModelService;
 
 public class Main {
@@ -28,7 +29,10 @@ public class Main {
         ModelService MdService = new ModelService();
         DatasetService DsService = new DatasetService();
 
-        while (option != 4) {
+        // Orquestador principal
+        LabFlowManager Manager = new LabFlowManager(DsService, MdService);
+
+        while (option != -1) {
 
             System.out.println("::::::::::::::::::::::::\n:: GESTION DE MODELOS ::\n::::::::::::::::::::::::");
             System.out.println("1. Cargar modelos desde archivo");
@@ -41,8 +45,9 @@ public class Main {
             System.out.println("6. Listar datasets");
             System.out.println("---------------------");
             System.out.println("7. Crear Experimento");
-            System.out.println("8. Listar Experimentos");
-            System.out.println("9. Buscar Experimento");
+            System.out.println("8. MostrarExperimentos ejecutados");
+            System.out.println("9. Buscar Experimento por ID dataset");
+            System.out.println("10. Buscar Experimento por ID modelo");
             System.out.println("---------------------");
             System.out.println("-1. Salir");
 
@@ -99,6 +104,51 @@ public class Main {
 
                 case 6:
                     DsService.PrintDatasets();
+                    break;
+
+                case 7:
+                    int g = 0;
+                    while (g == 0) {
+                        System.out.println("Ingrese el ID del Experimento:");
+                        int idExp = Integer.parseInt(br.readLine());
+                        System.out.println("Ingrese el ID del Dataset:");
+                        int idDataset = Integer.parseInt(br.readLine());
+                        System.out.println("Ingrese el ID del Modelo:");
+                        int idModelo = Integer.parseInt(br.readLine());
+
+                        boolean creado = Manager.createExperiment(idExp, idDataset, idModelo);
+                        if (creado) {
+                            System.out.println("Experimento creado con éxito");
+                            System.out.println("¿Desea crear otro experimento? (s/n)");
+                            String respuesta = br.readLine();
+                            if (!respuesta.equalsIgnoreCase("s")) {
+                                g = 1; // Salir del bucle
+                            }
+                        } else {
+                            System.out.println("Error al crear el experimento. Verifique los IDs ingresados.");
+                            System.out.println("¿Desea intentar nuevamente? (s/n)");
+                            String respuesta = br.readLine();
+                            if (!respuesta.equalsIgnoreCase("s")) {
+                                g = 1; // Salir del bucle
+                            }
+                        }
+                    }
+                    break;
+
+                case 8:
+                    Manager.listExecutedExperiments();
+                    break;
+
+                case 9:
+                    System.out.println("Ingrese el ID del Dataset:");   
+                    int idDatasetBuscar = Integer.parseInt(br.readLine());
+                    Manager.listExperimentsByDataset(idDatasetBuscar);
+                    break;
+
+                case 10:
+                    System.out.println("Ingrese el ID del Modelo:");
+                    int idModeloBuscar = Integer.parseInt(br.readLine());
+                    Manager.listExperimentsByModel(idModeloBuscar);
                     break;
 
                 case -1:
