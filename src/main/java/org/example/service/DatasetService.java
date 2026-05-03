@@ -22,7 +22,7 @@ public class DatasetService {
     // PrintDatasets para imprimir los datasets en la lista de datasets
     public void PrintDatasets() {
         for (int i = 0; i < datasets.tamaño(); i++) {
-            System.out.println(  "Dataset: " + datasets.obtener(i).getName() + " / Tipo: " + datasets.obtener(i).getProblemType() + " / Tamaño: " + datasets.obtener(i).getSize());
+            System.out.println( "ID: " + datasets.obtener(i).getId() + " - Dataset: " + datasets.obtener(i).getName() + " - Tipo: " + datasets.obtener(i).getProblemType() + " - Tamaño: " + datasets.obtener(i).getSize());
         }
     }
 

@@ -30,35 +30,78 @@ public class Main {
 
         while (option != 4) {
 
-            System.out.println("\nGESTION DE MODELOS");
+            System.out.println("::::::::::::::::::::::::\n:: GESTION DE MODELOS ::\n::::::::::::::::::::::::");
             System.out.println("1. Cargar modelos desde archivo");
             System.out.println("2. Cargar datasets desde archivo");
+            System.out.println("---------------------");
             System.out.println("3. Eliminar un modelo");
-            System.out.println("4. Salir");
+            System.out.println("4. Listar modelos");
+            System.out.println("---------------------");
+            System.out.println("5. Eliminar un dataset");
+            System.out.println("6. Listar datasets");
+            System.out.println("---------------------");
+            System.out.println("7. Crear Experimento");
+            System.out.println("8. Listar Experimentos");
+            System.out.println("9. Buscar Experimento");
+            System.out.println("---------------------");
+            System.out.println("-1. Salir");
 
+            System.out.print(" \nIngrese una opción: ");
             option = Integer.parseInt(br.readLine());
 
             switch (option) {
 
                 case 1:
                     cargarModelos(MdService, archivoModelos);
-                    MdService.PrintModels();
+                    for (int i = 0; i <= 100; i++) {
+                        System.out.print("\rCargando: " + i + "%");
+                        Thread.sleep(15);}
+                    System.out.println("\nModelos cargados con éxito");
+                    Thread.sleep(2000);
                     break;
 
                 case 2:
                     cargarDatasets(DsService, archivoDatasets);
-                    DsService.PrintDatasets();
+                        for (int i = 0; i <= 100; i++) {
+                        System.out.print("\rCargando: " + i + "%");
+                        Thread.sleep(15);}
+                    System.out.println("\nDatasets cargados con éxito");
+                    Thread.sleep(2000);
                     break;
 
                 case 3:
-                    // System.out.println("Ingrese el ID:");
-                    // String idEliminar = br.readLine();
+                    System.out.println("Ingrese el ID:");
+                    Integer idEliminar = Integer.parseInt(br.readLine());
 
-                    // modelos.removeIf(m -> m.getId().equals(idEliminar));
-                    // System.out.println("Modelo eliminado (si existía).");
+                    boolean eliminado = MdService.removeModel(idEliminar);
+                    if (eliminado) {
+                        System.out.println("Modelo eliminado con éxito");
+                    } else {
+                        System.out.println("Modelo no encontrado.");
+                    }
                     break;
 
                 case 4:
+                    MdService.PrintModels();
+                    break;
+                
+                case 5:
+                    System.out.println("Ingrese el ID:");
+                    Integer idEliminarDataset = Integer.parseInt(br.readLine());
+
+                    boolean eliminadoDataset = DsService.removeDataset(idEliminarDataset);
+                    if (eliminadoDataset) {
+                        System.out.println("Dataset eliminado con éxito");
+                    } else {
+                        System.out.println("Dataset no encontrado.");
+                    }
+                    break;
+
+                case 6:
+                    DsService.PrintDatasets();
+                    break;
+
+                case -1:
                     System.out.println("Saliendo...");
                     break;
 

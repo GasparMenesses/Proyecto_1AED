@@ -23,7 +23,7 @@ public class ModelService {
     public void PrintModels() {
         for (int i = 0; i < modelos.tamaño(); i++) {
             System.out.println(
-                "Modelo: " + modelos.obtener(i).getName() + " / Tipo: " + modelos.obtener(i).getType() + " / Parámetros: " + modelos.obtener(i).getParameters());
+                 "ID: " + modelos.obtener(i).getId() + " - Modelo: " + modelos.obtener(i).getName() + " - Tipo: " + modelos.obtener(i).getType() + " - Parámetros: " + modelos.obtener(i).getParameters());
         }
     }
 
