@@ -12,7 +12,7 @@ public class ModelService {
         if (model == null) {
             return false;
         }
-        if (buscarModel(model.getId()) != null) {
+        if (searchModel(model.getId()) != null) {
             return false;
         }
         modelos.agregar(model);
@@ -22,12 +22,13 @@ public class ModelService {
 
     public void PrintModels() {
         for (int i = 0; i < modelos.tamaño(); i++) {
-            System.out.println(modelos.obtener(i).getName());
+            System.out.println(
+                "Modelo: " + modelos.obtener(i).getName() + " / Tipo: " + modelos.obtener(i).getType() + " / Parámetros: " + modelos.obtener(i).getParameters());
         }
     }
 
     // eliminarModel para eliminar un modelo de la lista de modelos por su id, y devolver true si se eliminó, o false si no se encontró
-    public boolean eliminarModel(int id) {
+    public boolean removeModel(int id) {
         for (int i = 0; i < modelos.tamaño(); i++) {
             if (modelos.obtener(i).getId() == id) {
                 modelos.remover(i);
@@ -37,8 +38,8 @@ public class ModelService {
         return false;
     }
 
-    // buscarModel para buscar un modelo en la lista de modelos por su id, y devolverlo si se encuentra, o null si no se encuentra
-    public Model buscarModel(int id) {
+    // searchModel para buscar un modelo en la lista de modelos por su id, y devolverlo si se encuentra, o null si no se encuentra
+    public Model searchModel(int id) {
         for (int i = 0; i < modelos.tamaño(); i++) {
             if (modelos.obtener(i).getId() == id) {
                 return modelos.obtener(i);
@@ -47,8 +48,8 @@ public class ModelService {
         return null;
     }
 
-    // listarModels para imprimir los modelos en la lista de modelos
-    public void listarModels() {
+    // listModels para imprimir los modelos en la lista de modelos
+    public void listModels() {
         for (int i = 0; i < modelos.tamaño(); i++) {
             System.out.println(modelos.obtener(i));
         }

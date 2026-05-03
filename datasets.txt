@@ -1,0 +1,21 @@
+# id;nombre;tamanio;tipo
+1;ClientesBanco;10000;clasificacion
+2;VentasRetail;8500;regresion
+3;ImagenesGatosPerros;15000;clasificacion
+4;TransaccionesFraude;12000;anomalias
+5;PreciosInmuebles;5000;regresion
+6;PacientesHospital;7000;clasificacion
+7;SensoresIoT;20000;anomalias
+8;PrediccionClima;11000;regresion
+9;EmailsSpam;9000;clasificacion
+10;ConsumoEnergia;13000;regresion
+11;DeteccionIntrusos;14000;anomalias
+12;CalificacionesEstudiantes;6000;regresion
+13;RecomendacionProductos;17000;clasificacion
+14;AnalisisSentimientos;8000;clasificacion
+15;DeteccionDefectos;7500;anomalias
+16;VentasOnline;9500;regresion
+17;RendimientoDeportivo;4000;regresion
+18;ReconocimientoVoz;16000;clasificacion
+19;FraudeTarjetas;12500;anomalias
+20;PrediccionDemanda;10500;regresion
