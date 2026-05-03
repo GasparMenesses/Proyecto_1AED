@@ -1,6 +1,6 @@
 package aed;
 
-import org.example.model.Dataset;
+import org.example.components.Dataset;
 import org.example.service.DatasetService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

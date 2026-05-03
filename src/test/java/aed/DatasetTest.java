@@ -1,6 +1,6 @@
 package aed;
 
-import org.example.model.Dataset;
+import org.example.components.Dataset;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

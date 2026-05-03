@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.model.Model;
+import org.example.components.Model;
 import org.example.utils.Lista;
 
 public class ModelService {

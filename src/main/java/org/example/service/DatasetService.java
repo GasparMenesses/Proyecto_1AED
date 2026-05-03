@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.model.Dataset;
+import org.example.components.Dataset;
 import org.example.utils.Lista;
 
 public class DatasetService {
