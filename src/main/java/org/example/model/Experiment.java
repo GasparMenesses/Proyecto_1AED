@@ -2,52 +2,39 @@ package org.example.model;
 import org.example.utils.*;
 
 public class Experiment {
-    
-    private String id;
-    private DataSet dataset;    
-    private Model modelo;
-    private String estado; //pendiente o ejecutado
+    private final int id;
+    private final Model model;
+    private final Dataset dataset;
+    private String state;
+    private double accuracy;
+    private double precision;
 
-    double exactitud = 0; 
-    double precision = 0; 
-    
-    public Experiment(String id, DataSet dataset, Model modelo, String estado) {
+    public Experiment(int id, Model model, Dataset dataset) {
         this.id = id;
+        this.model = model;
         this.dataset = dataset;
-        this.modelo = modelo;
-        this.estado = estado;
+        this.state = "pendiente";
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public DataSet getDataset() {
+    public Dataset getDataset() {
         return dataset;
     }
 
-    public void setDataset(DataSet dataset) {
-        this.dataset = dataset;
+    public Model getModel() {
+        return model;
     }
 
-    public Model getModelo() {
-        return modelo;
+
+    public String getState() {
+        return state;
     }
 
-    public void setModelo(Model modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String state) {
+        this.state = state;
     }
 
 
