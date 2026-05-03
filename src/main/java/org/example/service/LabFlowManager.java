@@ -1,20 +1,22 @@
 package org.example.service;
-import org.example.model.*;
+
+import org.example.model.Dataset;
+import org.example.model.Model;
 import org.example.utils.Lista;
 
 public class LabFlowManager {
-    
+
     Lista<Model> modelos = new Lista<>();
-    Lista<Dataset> datasets;
+    Lista<Dataset> datasets = new Lista<>();
 
-
-    public void reciveModel(Model model){
+    // reciveModel para agregar a la lista de modelos
+    public void reciveModel(Model model) {
         modelos.agregar(model);
     }
 
-    public void PrintModels(){
-        for (int i = 0; i < modelos.tamaño(); i++) {
-            System.out.println(modelos.obtener(i).getName());
-        }
+    // reciveDataset para agregar a la lista de datasets
+    public void reciveDataset(Dataset dataset) {
+        datasets.agregar(dataset);
     }
+
 }

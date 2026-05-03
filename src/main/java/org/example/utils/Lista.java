@@ -1,13 +1,12 @@
 package org.example.utils;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.example.tda.TDALista;
 
 public class Lista<T> implements TDALista<T> {
+
     private Nodo<T> primero;
     private int tamaño;
 
@@ -36,8 +35,8 @@ public class Lista<T> implements TDALista<T> {
         if (index < 0 || index > tamaño) {
             throw new IndexOutOfBoundsException();
         }
-        Nodo<T> nuevo = new Nodo<>(elem);       
-        if (index == 0) {               
+        Nodo<T> nuevo = new Nodo<>(elem);
+        if (index == 0) {
             nuevo.setSiguiente(primero);
             primero = nuevo;
         } else {
@@ -86,7 +85,9 @@ public class Lista<T> implements TDALista<T> {
 
     @Override
     public boolean remover(T elem) {
-        if (primero == null) return false;
+        if (primero == null) {
+            return false;
+        }
         if (primero.getDato().equals(elem)) {
             primero = primero.getSiguiente();
             tamaño--;
@@ -108,7 +109,9 @@ public class Lista<T> implements TDALista<T> {
     public boolean contiene(T elem) {
         Nodo<T> aux = primero;
         while (aux != null) {
-            if (aux.getDato().equals(elem)) return true;
+            if (aux.getDato().equals(elem)) {
+                return true;
+            }
             aux = aux.getSiguiente();
         }
         return false;
@@ -118,7 +121,9 @@ public class Lista<T> implements TDALista<T> {
     public int indiceDe(T elem) {
         Nodo<T> aux = primero;
         for (int i = 0; i < tamaño; i++) {
-            if (aux.getDato().equals(elem)) return i;
+            if (aux.getDato().equals(elem)) {
+                return i;
+            }
             aux = aux.getSiguiente();
         }
         return -1;

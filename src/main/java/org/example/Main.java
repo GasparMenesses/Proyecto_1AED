@@ -1,8 +1,12 @@
 package org.example;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import org.example.model.Model;
-import org.example.service.LabFlowManager;
+import org.example.service.ModelService;
 
 public class Main {
 
@@ -17,9 +21,8 @@ public class Main {
         // Inicialización de variable int para opciones 
         int option = 0;
 
-        // Inicialización de LabFlowManager
-        LabFlowManager Manager = new LabFlowManager();
-
+        // Inicialización de Modelo
+        ModelService MdService = new ModelService();
 
         while (option != 4) {
 
@@ -34,9 +37,9 @@ public class Main {
             switch (option) {
 
                 case 1:
-                
-                    cargarModelos(Manager, archivo);
-                    Manager.PrintModels();
+
+                    cargarModelos(MdService, archivo);
+                    MdService.PrintModels();
                     break;
 
                 case 2:
@@ -67,22 +70,24 @@ public class Main {
         }
     }
 
-    private static void cargarModelos(LabFlowManager manager, String archivo) {
+    private static void cargarModelos(ModelService MdService, String archivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 linea = linea.trim();
-                if (linea.isEmpty() || linea.startsWith("#"))
+                if (linea.isEmpty() || linea.startsWith("#")) {
                     continue;
+                }
                 String[] partes = linea.split(";");
-                if (partes.length < 4)
+                if (partes.length < 4) {
                     continue;
+                }
                 try {
                     int id = Integer.parseInt(partes[0].trim());
                     String name = partes[1].trim();
                     String type = partes[2].trim();
                     String parameters = partes[3].trim();
-                    manager.reciveModel(new Model(id, name, type, parameters));
+                    MdService.registerModel(new Model(id, name, type, parameters));
                 } catch (IllegalArgumentException ex) {
                     System.err.println("Línea inválida: " + linea);
                 }
@@ -90,6 +95,6 @@ public class Main {
         } catch (IOException e) {
             System.err.println("No se pudo leer " + archivo + ": " + e.getMessage());
         }
-        
+
     }
 }
