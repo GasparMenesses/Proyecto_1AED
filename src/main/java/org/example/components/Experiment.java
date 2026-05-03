@@ -1,23 +1,21 @@
 package org.example.components;
 
-import org.example.service.ExperimentState;
-
-import org.example.utils.*;
-
 public class Experiment {
 
-    private final int id;
     private final Model model;
     private final Dataset dataset;
     private ExperimentState state;
-    private double accuracy;
-    private double precision;
+    private double accuracy = 0.0;
+    private double precision = 0.0;
+    private final int id;
 
-    public Experiment(int id, Model model, Dataset dataset, ExperimentState state) {
+    public Experiment(int id, Model model, Dataset dataset, ExperimentState state, double accuracy, double precision) {
         this.id = id;
         this.model = model;
         this.dataset = dataset;
-        this.state = state.PENDIENTE;
+        this.state = state;
+        this.accuracy = accuracy;
+        this.precision = precision;
     }
 
     public int getId() {
@@ -38,6 +36,11 @@ public class Experiment {
 
     public void setState(ExperimentState state) {
         this.state = state;
+    }
+
+    public void setResult(double accuracy, double precision) {
+        this.accuracy = accuracy;
+        this.precision = precision;
     }
 
 }
